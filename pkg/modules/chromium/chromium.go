@@ -470,6 +470,9 @@ func (mod Chromium) PDF(ctx context.Context, logger *zap.Logger, URL, outputPath
 		args = append(args, chromedp.UserAgent(options.UserAgent))
 	}
 
+	args = append(args, chromedp.Flag("high-dpi-support", "1"))
+	args = append(args, chromedp.Flag("force-device-scale-factor", "2.0"))
+
 	// See https://github.com/gotenberg/gotenberg/issues/524.
 	deadline, ok := ctx.Deadline()
 	if !ok {
